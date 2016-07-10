@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<a href="/13_sapielak/neuroscience/news/" style="text-decoration: none;"><div class="jumbotron">
+
+<h1>Neuronowiny</h1></div></a>
+<%= render :partial => "browse" %>
+
+<% @news.reverse.each do |news| %>
+<div class="panel panel-info">        <div class="panel-heading">
+            <h3 class="panel-title">
+          <%  icon = case news.kind
+              when "wydarzenia"
+                'globe'
+              when "odkrycia"
+                'binoculars'
+              when "nie_wiem"
+                'heart'
+              when "technologie"
+                'wrench'
+              end %>
+              <small><%=  news.created_at %></small>
+            <h3>
+            <%= fa_icon "#{icon}" %> <%= news.title %>
+           </h3>
+          </div>
+
+              <div class="panel-body" style="-o-column-count:2">
+                <div class="row">
+              <div class="col-sm-4"><%= image_tag "#{news.graphic}", :class=>['img-responsive'], :id=>"#{news.title}", :style=>"display: inline", :alt=> news.graphic_description %></div>
+              <div class="col-sm-5" style="margin-top: 30px; font-size:12pt; text-height: 2x; "><%= strip_tags(news.content) %><br></div>
+               </div>
+             </div>
+             <div class="panel-footer">
+             <%= link_to "Zobacz nowinkę: #{news.title} |", news %>
+      <% if(admin) then %>
+             <%= link_to "Edytuj nowinkę: #{news.title} |", edit_news_path(news) %>
+             <%= link_to "Usuń nowinkę: #{news.title} |", news, method: :delete, data: { confirm: 'Czy na pewno chcesz skasować tą nowinkę?' } %>
+      <% end %>
+             </div>
+          </div>
+
+<% end %>
+
+<br>
+<% if (current_user) then %>
+  <%= link_to 'Nowa neuronowinka :)', new_news_path, :class=>"button" %>
+<% end %> <br> <br>
+</div>

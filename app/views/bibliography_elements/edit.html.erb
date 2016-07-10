@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+<a href="/13_sapielak/neuroscience/bibliografia/" style="text-decoration: none;"><div class="jumbotron"><h1>Bibliografia i ciekawe strony</h1></div></a>
+	<div class="well well-lg">
+		<h3>Edytuj element bibliografii</h3>
+	<%= render 'form' %>
+
+</div>
+<%= link_to 'Pokaż wpis', @bibliography_element, :class=>"button" %>|
+	<%= link_to 'Powrót', bibliography_elements_path,  :class=>"button" %>

@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+<a href="/13_sapielak/neuroscience/news/" style="text-decoration: none;"><div class="jumbotron"><h1>Neuronowiny</h1></div></a>
+<div class="well well-lg">
+  <small><i>
+    Utworzone <%=  @news.created_at %>
+  </i></small>
+  <h2>
+  <strong><%= @news.title %> </strong> <h2>
+  <!-- <h3> Kiedy? - <%= @news.date %> </h3> -->
+  <br>
+<div style="padding: 15px" class="panel" >
+<div class="row">
+ <div class="col-sm-5">
+    <%= image_tag "#{@news.graphic}", :class=>'img-responsive', :alt=> @news.graphic_description %> 
+ </div>
+ <div class="col-sm-7" >
+  <!-- relevant icon for news type -->
+   <%  icon = case @news.kind
+              when "wydarzenia"
+                'globe'
+              when "odkrycia"
+                'binoculars'
+              when "nie_wiem"
+                'heart'
+              when "technologie"
+                'wrench'
+   end %>
+    <!-- possibility to go to new line -->
+    <% content = @news.content.split("\n") %>
+    <p style="font-size: 14pt"><%= fa_icon "#{icon}" %>
+        <%  content.each do |paragraph| %>
+          <%= if(@news.author_id==1) then raw(paragraph)
+                else paragraph
+              end %><br>
+        <% end %>
+        </p>
+      <% if(@news.source) then %>
+        <% source = @news.source.split("\n") %>
+        
+        <p style="font-size: 10pt">
+        <b>Źródła informacji:</b><br>
+          <% source.each do |paragraph| %>
+           <%= if(@news.author_id==1) then raw(paragraph)
+              else paragraph
+            end %><br>
+          <% end %>
+          </p>
+      <% end %>
+       <br>
+        </div>
+      </div>
+  </div>
+</div>
+<% if(current_user) then %>
+  <%= link_to 'Edytuj neuronowinę', edit_news_path(@news), :class=>"button" %> |
+<% end %>
+<%= link_to 'Wróć', news_index_path, :class=>"button" %>

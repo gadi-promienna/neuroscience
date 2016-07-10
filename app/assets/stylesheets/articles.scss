@@ -1,0 +1,22 @@
+// Place all the styles related to the articles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.columns
+{
+	-moz-column-width: 25%;
+	
+
+
+	-webkit-column-count: 4;
+	-moz-column-count: 4;
+	break-inside: avoid-column;
+	break-after: column;
+}
+div.thumbnail
+	{
+
+	-webkit-column-break-inside: avoid;
+	break-inside: avoid-column;
+	page-break-inside:avoid;
+
+	}

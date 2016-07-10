@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+<%= render :partial => "menu" %>
+<div class="well well-lg">
+	<h1>Edytuj dział neurowiedzy</h1>
+
+	<%= render 'form' %>
+</div>
+<%= link_to "Pokaż dział #{@article_topic.title}", @article_topic, :class=>"button" %> 
+	<%= link_to 'Powrót', article_topics_path(@article_topics_path), :class=>"button"%>
+
+	<br> <br>

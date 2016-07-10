@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+<%= render :partial => "menu" %>
+<div class="well well-lg">
+
+		<h2>
+
+		  <%= @article_topic.title %>
+		</h2>
+		<hr>
+		<p>
+		  
+		   <%= image_tag "#{@article_topic.graphic}", :class=>'img-responsive', :alt=> @article_topic.graphic_description %>
+		</p>
+
+		<p>
+		  
+		  <%= @article_topic.description %>
+		</p>
+		<% if admin then %>
+		<%= link_to 'Edytuj dział', edit_article_topic_path(@article_topic), :class=>"button" %> |
+		<% end %>
+
+		<%= link_to 'Wróć', article_topics_path, :class=>"button" %>
+</div>

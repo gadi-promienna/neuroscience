@@ -1,0 +1,15 @@
+<a href="/13_sapielak/neuroscience/" style="text-decoration: none; color:white"><div class="jumbotron"><h1>Neuronauka</h1></div></a>
+<div id="topic-menu">
+<ul class="nav nav-pills">
+	<% @article_topics = ArticleTopic.all %>
+	<% @article_topics.each do |article_topic| %>   
+	      <li><%= link_to article_topic.title, article_topic_articles_path(article_topic) %></li>
+
+	<% end %>
+	<li><%= mail_to 'barbara.sapielak@uj.edu.pl', 'Zaproponuj swój dział :)', :subject=>"Nowy dział neurowiedzy", :body=>"Chcę zaproponować dodanie na stronę działu: " %>
+	</li>
+	</ul>
+</div> 
+
+<br><br>
+

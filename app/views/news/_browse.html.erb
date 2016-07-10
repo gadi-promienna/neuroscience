@@ -1,0 +1,21 @@
+<div class="well well-lg">
+	<%= form_tag("/13_sapielak/neuroscience/news/find", action: "find", method: "get", :style=>"display:inline") do %>
+	  <strong style="font-size:20pt"><%= fa_icon "search" %><%= label_tag(:find, "") %></strong>
+	  <%= text_field_tag(:find) %>
+	  <%= submit_tag("szukaj", :class=>"button btn-primary") %>
+	<% end %>
+
+	<%= form_tag("/13_sapielak/neuroscience/news/typ", action: "typ", method: "get", :style=>"display:inline; margin-left:2cm") do %>
+	  <strong style="font-size:20pt"><%= fa_icon "search" %></strong> <%= label_tag("Typ neuronowinek" ) %>
+	
+	   <%= select_tag(:kind, 
+      options_for_select([["wydarzenia","wydarzenia"], ["odkrycia i badania", "odkrycia"], ["technologie", "technologie"], ["nieokreślony", "nie_wiem"]]
+      )) %>
+	  <%= submit_tag("wybierz", :class=>"button btn-primary") %>
+	<% end %>
+
+	<strong style="font-size:20pt;margin-left:2cm"" >
+	<%= fa_icon "search" %><%= label_tag(:find, "") %>
+	</strong> <b><%= link_to "Pokaż wszystko", "/13_sapielak/neuroscience/news/" %></b>
+
+</div>

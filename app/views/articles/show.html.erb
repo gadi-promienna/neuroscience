@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+<p><%= render :partial => "article_topics/menu" %></p>
+<div id="topic-menu">
+<div class="well well-lg">
+		
+			<% content = @article.content.split("\n") %>
+		
+		<p  style="font-size: 12pt">
+		<%= image_tag "#{@article.graphic}", :class=>'img-responsive', 
+		   :alt=> @article.graphic_description, :style=>"float:left; margin: 20px; max-width:40%" %> <h2>
+		<%= @article.title %><br><br>
+		</h2>
+		  <%  content.each do |paragraph| %>
+		  	<%= if(@article.author_id==1) then raw(paragraph).html_safe
+		  	else paragraph
+		  	 end %><br>
+		  <% end %>
+		</p> <br>
+		<% if(@article.source) then %>
+			<% source = @article.source.split("\n") %>
+			
+			<p style="font-size: 10pt">
+			<b>Źródła informacji:</b><br>
+			  <% source.each do |paragraph| %>
+			 <%= if(@article.author_id==1) then raw(paragraph) 
+			 else paragraph
+			 	end %><br>
+			  <% end %>
+			</p> 
+		<% end %>
+			<br>
+
+
+	<% if(current_user) then	%> <%= link_to 'Edytuj artykuł', edit_article_path(@article), :params=>{:article_topic=>@article_topic}, :class=>"button" %> |
+	<% end %>
+		<%= link_to 'Powrót', article_topic_articles_path(@article_topic), :class=>"button" %>
+	
+	</div>
+</div>

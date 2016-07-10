@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+<%= render :partial => 'article_topics/menu' %>
+<h2>
+  <%= @article_topic.title %>
+</h2><hr>
+  
+
+  <% if(@articles.count==0) %>
+  <div class="well well-lg" style="width:50%;margin-left:1cm; font-size: 12pt">
+
+      Na razie nie ma artykułów w tym dziale. 
+      <br>Ale na pewno niebawem się pojawią :)
+      <br><br>Do zobaczenia!
+  </div>
+
+ <% end %>
+ <div class="columns">
+  <% @articles.each do |article| %>
+     
+        <div class="thumbnail">
+         <%= image_tag "#{article.graphic}", :class=>'img-responsive', :id=>"#{article.title}", :alt=> article.graphic_description %>
+          <div class="caption">
+            <h3><%= article.title %></h3>
+            
+            <% 
+             if(article.content) then
+              content_array=article.content.split(".") 
+                  if(content_array.length>2) then content = content_array[0..2].join(".")
+                  end
+              end
+             %>
+            <p> <%= "#{strip_tags(content)}..." %> </p>
+                <%#= article.author %> <hr>
+            <p> 
+                <%= link_to "Pokaż artykuł: #{article.title}", article_path(:id=>article, :article_topic_id=>article.article_topic) %>
+        <% if(admin) then %>
+             <%= link_to "| Edytuj artykuł: #{article.title} |", edit_article_path(:id=>article, :article_topic_id=>article.article_topic) %> 
+                <%= link_to "Skasuj artykuł: #{article.title}", article_url(:id=>article, :article_topic_id=>@article_topic), method: :delete, data: { confirm: 'Czy na pewno chcesz skasować ten artykuł?' } %>
+        <% end %>
+            </p>
+          </div>
+        </div>
+  <% end %>
+
+  </div>
+<% if(current_user) %>
+  <%= link_to 'Dodaj Artykuł!', new_article_topic_article_path(@article_topic), 
+  :class=>"button" %>
+<% end %>
+  <br> <br>
+ </div>

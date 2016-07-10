@@ -1,0 +1,54 @@
+// Place all the styles related to the ArticleTopics controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$first_color: rgb(0, 0, 100);
+$second_color: rgb(240, 240, 150 );
+#topic-menu{
+	
+}
+#topic-menu li{
+	
+	
+	border-right-style: ridge;
+	border-bottom-style: ridge;
+	border-width: 3px;
+	border-color: $first_color;
+	border-radius: 25%;
+	font-size: 14pt;
+	width-min: 25%;
+	padding: 2px;
+	margin: 2px;
+	text-align:center;
+	background-color: $second_color;
+}
+
+#topic-menu li a:visited
+{
+	color: $first_color;
+	font-size: 14pt;
+	border-right-style: ridge;
+	border-bottom-style: ridge;
+	border-width: 3px;
+	border-color: rgb(0, 0, 100);
+	border-radius: 25%;
+}
+
+#topic-menu li:hover
+{
+	border-left-style: ridge;
+	border-top-style: ridge;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-width: 3px;
+	border-color: rgb(0, 0, 100);
+	
+}
+
+#topic-menu a:hover, #topic-menu a:hover:visited,
+{
+	border-radius: 25%;
+	color: white;
+	background-color: #337AB7;
+}
+

@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+<p><%= render :partial => "article_topics/menu" %></p>
+
+<div class="well well-lg">
+	<h2>
+	  <%= @article_topic.title %>
+	</h2>
+	<h3>Edytuj artykuł</h3>
+
+	<%= render 'form' %>
+</div>
+
+
+<%= link_to 'Zobacz artykuł', article_path(@article), :class=>"button" %> 
+<%= link_to 'Powrót', article_topic_articles_path(@article_topic), :class=>"button"%>
+<br> <br>

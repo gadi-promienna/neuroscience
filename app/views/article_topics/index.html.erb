@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p><%= render :partial => "menu" %></p>
+<div class="panel panel-info">
+<div class="panel-heading">
+    <div class="panel-title" ><h2>Witaj na stronie poświęconej neuronauce :)</h2></div></div>
+  <div class="panel-body" style="min-height:10cm; font-size: 14pt; line-height: 21pt">
+    <div style="font-size: 14pt; line-height: 24px">
+     Przyczytasz tutaj ciekawe informacje na temat funkcjonowania i budowy układu nerwowego. Na razie dostępne są dwa działy tematyczny, ale klikając „zaproponuj swój dział", możesz wysłać maila z własną propozycją. <br> <br>
+    W "Podstawowych informacjach" dowiesz się między innymi jak zbudowany jest neuron, jak dzielimy układ nerwowy oraz jakie pytania stawia neuroscience.
+      Obok „podstawowych informacji" znajdziesz wiadomości o neuroprzekaźnikach. To za ich pomocą komórki nerwowe przesyłają sobie sygnały. <br> <br>
+     Odwiedzając regularnie „Neuronowinki", będziesz wiedział o wydarzeniach, ciekawach odkryciach i technologiach związanych ze światem neuroscience.
+     <br> <br>
+      Mam nadzieję, że spedzisz tu miłe chwile i zrozumiesz, jak pasjonująca jest neuronauka. Możesz także w łatwy sposób zostać edytorem i współtworzyć serwis.
+      </div>
+    </div>
+</div>
+
+
+
+
+
+<% if (admin) then %>
+        <% @article_topics.each do |article_topic| %> 
+          <div class="panel panel-info">
+              <div class="panel-heading" >
+                <h3 style="font-size: 16pt" class="panel-title">
+                <%= article_topic.title %></h3>
+              </div>
+              <div style="font-size: 12pt"  class="panel-body">
+              <%= image_tag "#{article_topic.graphic}", :class=>['img-responsive', 'thumbnail'], :id=>"#{article_topic.title}", :alt=> article_topic.graphic_description %>
+              <%= article_topic.description %><br>
+               <% @articles = article_topic.articles.all %>
+                <br><b>Artykuły:</b>
+               <% @articles.each do |article| %>
+                <%= link_to "#{article.title}, ", article_path(article) %>
+               <% end %>
+             </div>
+             <div class="panel-footer" style="font-size: 12pt">
+             <%= link_to "Zobacz dział: #{article_topic.title} ", article_topic_articles_path(article_topic) %>
+          <% if(admin) then %>
+             <%= link_to "| Edytuj dział: #{article_topic.title} ", edit_article_topic_path(article_topic) %>
+             <%= link_to "| Usuń dział: #{article_topic.title} ", article_topic, method: :delete, data: { confirm: 'Czy na pewno chcesz skasować ten artykuł?' } %>
+
+          <% end %>
+          </div>
+        </div>
+          <% end %>
+
+    <br>
+     <% if(admin) then %>
+    <%= link_to 'Dodaj dział :)', new_article_topic_path, :class=>"button"%>
+     <% end %>
+     <% if(!admin) then %>
+    <%= mail_to 'barbara.sapielak@uj.edu.pl', 'Zaproponuj swój dział :)', :subject=>"Nowy dział neurowiedzy", :body=>"Chcę zaproponować dodanie na stronę działu: ", :class=>"button"%>
+    <% end %>
+
+    <br><br>
+  <%end %>

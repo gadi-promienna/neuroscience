@@ -1,0 +1,54 @@
+<script>
+function description()
+  {if(document.getElementById('graphic').value=='')
+    document.getElementById('alt').style.display='none';
+  else document.getElementById('alt').style.display='inherit';}
+
+</script>
+
+<%= form_for @article do |f| %> 
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+      <ul>
+      <% @article.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <div class="field">
+      <%= f.label "Tytuł artykułu" %><br>
+      <%= f.text_field :title, :class=>"form-control" %>
+    </div>
+    <div class="field">
+      <%= f.label "Treść artykułu" %><br>
+      <%= f.text_area :content %>
+    </div>
+    <div class="field">
+      <%= f.label "Dodaj obrazek ilustrujący artykuł:" %><br>
+      <%= f.file_field :graphic, :class=>"form-control", :id=>"graphic",
+      :onfocus=>"description()"%>
+    </div>
+    <div class="field" id="alt"  style="display:none">
+        <%= f.label "Opis obrazka" %>
+        <%= f.text_field :graphic_description, :class=>"form-control" %>
+    </div>
+    <div>
+        <%= f.label "Podpis i źródła informacji:" %>
+        <%= f.text_area :source, :class=>"form-control" %>
+    </div>
+      <br>
+    <div class="field">
+      <%= f.hidden_field :article_topic_id, :value=>@article_topic.id %>
+    </div>
+    <div class="actions">
+      <%= f.submit("wyślij artykuł", :class=>"btn btn-primary") %>
+    </div>
+</div>
+
+<% end %>
+
+

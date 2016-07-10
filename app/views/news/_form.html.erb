@@ -1,0 +1,60 @@
+<script>
+function description()
+  {if(document.getElementById('graphic').value=='')
+    document.getElementById('alt').style.display='none';
+  else document.getElementById('alt').style.display='inherit';}
+
+</script>
+
+
+
+<%= form_for(@news) do |f| %>
+  <% if @news.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@news.errors.count, "error") %> prohibited this news from being saved:</h2>
+
+      <ul>
+      <% @news.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="form-group">
+    <!-- <div class="field">
+      <%= f.label "Kiedy to się wydarzy lub wydarzyło?" %><br>
+      <%= f.date_select :date, :class=>"form-control" %>
+    </div> -->
+    <div class="field">
+      <%= f.label "Tytuł nowinki:" %><br>
+      <%= f.text_field :title,:class=>"form-control" %>
+    </div>
+    <div class="field">
+      <%= f.label "Rodzaj nowinki:" %><br>
+      <%= f.select(:kind, 
+      options_for_select([["wydarzenia","wydarzenia"], ["odkrycia i badania", "odkrycia"], ["technologie", "technologie"], ["Nie wiem", "nie_wiem"]]
+      )) %>
+    </div>
+    <div class="field">
+      <%= f.label "Treść nowinki" %><br>
+      <%= f.text_area :content, :class=>"form-control" %>
+    </div>
+    <div class="field">
+      <%= f.label "Obrazek ilustrujący nowinkę:" %><br>
+      <%= f.file_field :graphic,  :class=>"form-control", :id=>"graphic",  :onfocus=>"description()"%>
+    </div>
+    <div id="alt"  style="display:none">
+        <%= f.label "Opis obrazka" %>
+        <%= f.text_field :graphic_description, :class=>"form-control" %>
+      </div>
+      <div>
+        <%= f.label "Podpis i źródła informacji:" %>
+        <%= f.text_area :source, :class=>"form-control" %>
+      </div>
+      <br>
+    <div class="actions" >
+      <%= f.submit("Wyślij news",:class=>"btn btn-primary") %>
+    </div>
+      
+  <% end %>
+</div>

@@ -1,0 +1,44 @@
+<script>
+function description()
+  {if(document.getElementById('graphic').value=='')
+    document.getElementById('alt').style.display='none';
+  else document.getElementById('alt').style.display='inherit';}
+
+</script>
+
+
+
+<%= form_for(@article_topic) do |f| %>
+  <% if @article_topic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@article_topic.errors.count, "error") %> prohibited this article_topic from being saved:</h2>
+
+      <ul>
+      <% @article_topic.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="form-group">
+      <div>
+        <%= f.label "Tytuł działu" %><br>
+        <%= f.text_field :title, :class=>"form-control"%>
+      </div><br>
+      <div>
+        <%= f.label "Obrazek ilustrujący dział" %>
+        <%= f.file_field :graphic, :class=>"form-control", :id=>"graphic", :onfocus=>"description()"%>
+      </div><br>
+       <div id="alt"  style="display:none">
+        <%= f.label "Opis obrazka" %>
+        <%= f.text_field :graphic_description, :class=>"form-control" %>
+      </div><br>
+      <div>
+        <%= f.label "Opis działu" %><br>
+        <%= f.text_area :description, :class=>"form-control" %>
+      </div><br>
+      <div class="actions">
+        <%= f.submit("Wyślij", :class=>"btn btn-primary") %>
+      </div>
+    </div>
+<% end %>

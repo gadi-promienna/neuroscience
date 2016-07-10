@@ -1,0 +1,29 @@
+<%= form_for(@bibliography_element) do |f| %>
+  <% if @bibliography_element.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bibliography_element.errors.count, "error") %> prohibited this bibliography_element from being saved:</h2>
+
+      <ul>
+      <% @bibliography_element.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label "Przyjazna nazwa" %><br>
+    <%= f.text_field :friendly_name %>
+  </div>
+  <div class="field">
+    <%= f.label "Oficjalna nazwa źródła" %><br>
+    <%= f.text_field :source %>
+  </div>
+  <div class="field">
+    <%= f.label "Opis użytej informacji i źródła" %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit("Zatwierdź wpis w bibliografii", :class=>"btn btn-primary") %>
+  </div>
+<% end %>

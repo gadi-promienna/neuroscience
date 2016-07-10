@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<head>
+  <title>Neuroscience</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<div class="container">
+	<body>
+
+<div id="user_nav">
+<%= fa_icon "user" %>
+  <% if current_user %>
+    Zalogowałeś się jako <%= current_user.email %>.
+    <%= link_to "Wyloguj się", log_out_path %>
+  <% else %>
+    <%= link_to "Zostań edytorem", sign_up_path %> 
+    <%= link_to "Zaloguj się", log_in_path %>
+  <% end %>
+</div>
+	<br>
+		<!-- <ul id="main-menu" class="nav nav-pills">
+			<li role="presentation" id="serwis" ><%= link_to "O serwisie", '/o_witrynie'  %></li>
+			<li role="presentation" id="neuroscience" style=""><%= link_to "Neuronauka", '/neurowiedza' %></li>
+			<li role="presentation" id="newsy"><%= link_to "Neuronowiny", '/newsy' %></li>
+			<li role="presentation" id="bibliografia"><%= link_to "Bibliografia i ciekawe strony.", '/bibliografia' %></li>
+		</ul>  -->
+		<ul id="main-menu" class="nav nav-pills">
+			<li role="presentation" id="neuroscience" style=""><%= link_to "Neuronauka", '/13_sapielak/neuroscience/neurowiedza' %></li>
+			<li role="presentation" id="newsy"><%= link_to "Neuronowiny", '/13_sapielak/neuroscience/newsy' %></li>
+			<li role="presentation" id="bibliografia"><%= link_to "Bibliografia i ciekawe strony.", '/13_sapielak/neuroscience/bibliografia' %></li>
+			<li role="presentation" id="serwis" ><%= link_to "O serwisie", '/13_sapielak/neuroscience/o_witrynie'  %></li>
+		</ul> 
+		<%= yield %>
+		<br><footer>
+		<hr class="end">
+		
+			<center>&copyBarbara Sapielak, studentka elektronicznego przetwarzania informacji
+
+			<br>
+
+			Animowany gif, który jest dominującym obrazkiem na stronie pochodzi z witryny <a href="http://xcell2.com/older%20older%20stuff/old-website/products/neurons-psc/neurons.html"> www.xcell2.com </a>. Jego autorem jest <b>Dr. Ying Pei</b>.
+
+			 </center>
+
+		</footer>
+		<br><br>
+	</body>
+
+</div>
+
+<html>
+<script>
+var href = window.location.href;
+if(href.lastIndexOf("o_witrynie")!=-1) document.getElementById("serwis").className = "active";
+if(href.lastIndexOf("neurowiedza")!=-1) document.getElementById("neuroscience").className = "noactive";
+if(href.lastIndexOf("newsy")!=-1) document.getElementById("newsy").className = "active";
+if(href.lastIndexOf("bibliografia")!=-1) document.getElementById("bibliografia").className = "active";
+
+
+</script>
+</html>

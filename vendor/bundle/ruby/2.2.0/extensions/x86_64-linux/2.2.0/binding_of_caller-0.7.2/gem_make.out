@@ -1,0 +1,12 @@
+/home/gadi/.rvm/rubies/ruby-2.2.3/bin/ruby -r ./siteconf20160522-3743-zdpyi3.rb extconf.rb
+
+make "DESTDIR=" clean
+make: *** Brak reguł do wykonania obiektu `clean'. Stop.
+
+make "DESTDIR="
+echo "Nada."
+Nada.
+
+make "DESTDIR=" install
+echo "Nada."
+Nada.

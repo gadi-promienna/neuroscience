@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+<div class="well well-lg">
+<a href="/neuroscience/" style="text-decoration: none;"><div class="jumbotron"><h1>Neuronauka</h1></div></a>
+<h2>Nowy użytkownik</h2>
+
+  <%= form_for @user do |f| %>
+    <% if @user.errors.any? %>
+      <div class="error_messages">
+        <h2>Form is invalid</h2>
+       <!--  <ul>
+          <% for message in @user.errors.full_messages %>
+            <li><%= message %></li>
+          <% end %>
+        </ul> -->
+      </div>
+    <% end %>
+    <p>
+      <%= f.label "Nazwa użytkownika" %><br />
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label "Email" %><br />
+      <%= f.text_field :email %>
+    </p>
+    <p>
+      <%= f.label "Password" %><br />
+      <%= f.password_field :password %>
+    </p>
+    <!-- user are add with role "e" as "editors" --> 
+    <div class="field">
+      <%= f.hidden_field :role, :value=>'e' %>
+      
+    </div>
+
+    <p>
+      <%= f.label "Potwierdź hasło" %><br />
+      <%= f.password_field :password_confirmation %>
+    </p>
+    <p><%= f.submit("Zatwierdź", :class=>"btn-primary") %></p>
+  <% end %>
+</div>

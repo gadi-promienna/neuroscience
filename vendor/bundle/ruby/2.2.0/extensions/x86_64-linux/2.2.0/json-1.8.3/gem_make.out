@@ -1,0 +1,9 @@
+/home/gadi/.rvm/rubies/ruby-2.2.3/bin/ruby -r ./siteconf20160522-3743-pa0exj.rb extconf.rb
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+make: Nie ma nic do zrobienia w `all'.
+
+make "DESTDIR=" install

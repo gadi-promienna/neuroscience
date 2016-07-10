@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<a href="/13_sapielak/neuroscience/bibliografia/" style="text-decoration: none;"><div class="jumbotron"><h1>Bibliografia i ciekawe strony</h1></div></a>
+<div class="panel well-lg">
+  <h2> Bibliografia i ciekawe strony </h2>
+  <br>
+  <table class="table">
+    <thead style="font-size: 16pt"> 
+      <tr>
+        <th>Nazwa</th>
+        <th>Źródło</th>
+        <th>Opis</th>
+        <th>Możliwe działania</th>
+        <th colspan="4"></th>
+      </tr>
+    </thead>
+
+    <tbody >
+      <% @bibliography_elements.each do |bibliography_element| %>
+        <tr>
+          <td style="font-size: 14pt"><%= bibliography_element.friendly_name %></td>
+          <td style="font-size: 14pt"><%= bibliography_element.source %></td>
+          <td style="font-size: 14pt"><%= bibliography_element.description %></td>
+              <td style="font-size: 14pt"><u><%= link_to 'Pokaż element bibliografii,', bibliography_element %>
+          <% if(admin) then %>
+              <%= link_to "Edytuj element: #{bibliography_element.friendly_name}", edit_bibliography_element_path(bibliography_element) %>, <br>
+              <%= link_to "Usuń element: #{bibliography_element.friendly_name}", bibliography_element, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+          </u></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<br>
+</div>
+<% if(current_user) then %>
+  <%= link_to 'Nowy wpis.', new_bibliography_element_path, :class=>"button" %>
+<% end %>

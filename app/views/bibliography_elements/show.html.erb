@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+<a href="/13_sapielak/neuroscience/bibliografia/" style="text-decoration: none;"><div class="jumbotron"><h1>Bibliografia i ciekawe strony</h1></div></a>
+<div class="panel well-lg">
+	<h2>
+	  <%= @bibliography_element.friendly_name %>
+	</h2>
+
+	<p>
+	  <strong>Źródła</strong>
+	  <%= @bibliography_element.source %>
+	</p>
+
+	<p>
+	  <strong >Opis</strong>
+	  <%= @bibliography_element.description %>
+	</p>
+
+<% if(current_user) then	%> <%= link_to 'Edytuj', edit_bibliography_element_path(@bibliography_element), 
+	:class=>"button" %> |
+<% end %>	<%= link_to 'Powrót', bibliography_elements_path, :class=>"button" %>
+</div>
